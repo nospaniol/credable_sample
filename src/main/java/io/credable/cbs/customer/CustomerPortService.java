@@ -17,11 +17,12 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "CustomerPortService", targetNamespace = "http://credable.io/cbs/customer", wsdlLocation = "file:/Users/anywairgroup/Desktop/CredableEngine/src/main/resources/wsdl/customerWsdl.wsdl")
+@WebServiceClient(name = "CustomerPortService", targetNamespace = "http://credable.io/cbs/customer", wsdlLocation = "file:/https://trxapitest.credable.io/service/transactionWsdl.wsdl")
 public class CustomerPortService
     extends Service
 {
-
+//https://trxapitest.credable.io/service/transactionWsdl.wsdl
+   // /Users/anywairgroup/Desktop/CredableEngine/src/main/resources/wsdl/customerWsdl.wsdl
     private final static URL CUSTOMERPORTSERVICE_WSDL_LOCATION;
     private final static WebServiceException CUSTOMERPORTSERVICE_EXCEPTION;
     private final static QName CUSTOMERPORTSERVICE_QNAME = new QName("http://credable.io/cbs/customer", "CustomerPortService");

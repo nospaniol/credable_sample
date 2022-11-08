@@ -34,13 +34,13 @@ public class LoanController {
     private LoanBookRepository loanBookRepository;
 
     @ApiOperation(value = "get customer transaction data")
-    @PostMapping("/transaction/data")
+    @PostMapping("/transaction/data/{customerNumber}")
     public ResponseEntity<CredableResponse> getTransactions(
-            @RequestBody BankRequest request
+            @PathVariable String customerNumber
     ) {
         CredableResponse credable_response = new CredableResponse();
         try {
-            List<TransactionData> response = bankClient.getTransactions(request.getCustomerNumber());
+            List<TransactionData> response = bankClient.getTransactions(customerNumber);
             credable_response.setData(response);
             return new ResponseEntity(credable_response, HttpStatus.OK);
         } catch (Exception e){
@@ -53,13 +53,13 @@ public class LoanController {
     }
 
     @ApiOperation(value = "get loan status")
-    @PostMapping("/get/loan/status")
+    @PostMapping("/get/loan/status/{customerNumber}")
     public ResponseEntity<CredableResponse> getLoanStatus(
-            @RequestBody BankRequest request
+            @PathVariable String customerNumber
     ) {
         CredableResponse credable_response = new CredableResponse();
         try {
-            Customer customer=customerRepository.findByCustomerNumber(request.getCustomerNumber());
+            Customer customer=customerRepository.findByCustomerNumber(customerNumber);
             if(customer==null){
                 credable_response.setTitle("error");
                 credable_response.setMessage("sorry, customer number not registered!");
@@ -84,20 +84,21 @@ public class LoanController {
     }
 
     @ApiOperation(value = "apply loan reuest")
-    @PostMapping("/loan/request")
+    @PostMapping("/loan/request/{customerNumber}/{amount}")
     public ResponseEntity<CredableResponse> getLoan(
-            @RequestBody LoanRequest request
+              @PathVariable String customerNumber,
+              @PathVariable int amount
     ) {
         CredableResponse credable_response = new CredableResponse();
         try {
-            String token=scoringClient.getScoringToken(request.getCustomerNumber());
+            String token=scoringClient.getScoringToken(customerNumber);
             ScoringResults scoringResults=scoringClient.getScoring(token);
-           if(scoringResults.getLimitAmount()<request.getAmount()){
+           if(scoringResults.getLimitAmount()<amount){
                credable_response.setTitle("error");
                credable_response.setMessage("sorry, the amount is requested than the loan limit set!");
                return new ResponseEntity(credable_response, HttpStatus.OK);
            }
-           Customer customer=customerRepository.findByCustomerNumber(request.getCustomerNumber());
+           Customer customer=customerRepository.findByCustomerNumber(customerNumber);
             if(customer==null){
                 credable_response.setTitle("error");
                 credable_response.setMessage("sorry, customer number not registered!");
@@ -112,7 +113,7 @@ public class LoanController {
 
             loanBook=new LoanBook();
             loanBook.setCustomer(customer);
-            loanBook.setLoanAmount(request.getAmount());
+            loanBook.setLoanAmount(amount);
             loanBook.setTotalPaid(0);
             loanBook.setLoanStatus("pending");
             loanBookRepository.save(loanBook);

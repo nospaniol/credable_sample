@@ -18,12 +18,8 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 @Component
 public class ScoringClient {
 
-    @Autowired
-    private WebServiceTemplate webServiceTemplate;
 
-
-    @Retryable(maxAttempts = 5, value = RuntimeException.class,
-            backoff = @Backoff(delay = 15000, multiplier = 2))
+    @Retryable(maxAttempts = 5, value = RuntimeException.class,backoff = @Backoff(delay = 15000, multiplier = 2))
     public String getScoringToken(String customerNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String scoring_url = "https://scoringtest.credable.io/ap1/vi/scoring/initiateQueryScore/" + customerNumber;

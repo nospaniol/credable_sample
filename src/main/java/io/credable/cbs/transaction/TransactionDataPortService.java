@@ -17,11 +17,11 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "TransactionDataPortService", targetNamespace = "http://credable.io/cbs/transaction", wsdlLocation = "file:/Users/anywairgroup/Desktop/CredableEngine/src/main/resources/wsdl/transactionWsdl.wsdl")
+@WebServiceClient(name = "TransactionDataPortService", targetNamespace = "http://credable.io/cbs/transaction", wsdlLocation = "https://trxapitest.credable.io/service/transactionWsdl.wsdl")
 public class TransactionDataPortService
     extends Service
 {
-
+//https://trxapitest.credable.io/service/transactionWsdl.wsdl
     private final static URL TRANSACTIONDATAPORTSERVICE_WSDL_LOCATION;
     private final static WebServiceException TRANSACTIONDATAPORTSERVICE_EXCEPTION;
     private final static QName TRANSACTIONDATAPORTSERVICE_QNAME = new QName("http://credable.io/cbs/transaction", "TransactionDataPortService");
@@ -30,7 +30,7 @@ public class TransactionDataPortService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/anywairgroup/Desktop/CredableEngine/src/main/resources/wsdl/transactionWsdl.wsdl");
+            url = new URL("https://trxapitest.credable.io/service/transactionWsdl.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
