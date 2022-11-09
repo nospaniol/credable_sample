@@ -29,3 +29,7 @@ To run the Application, use the below command :
 To access the API Documentation and try out use the below link after the Application is up :
 
 http://127.0.0.1:5500/swagger-ui.html#/
+
+The walkthrough below:
+
+https://docs.google.com/document/d/1sGmjCVXJTsKwdKnM8mrVRa8Z-fRGmAMxspJgEDZF74Q/edit?usp=sharing
