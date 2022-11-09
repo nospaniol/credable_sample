@@ -13,6 +13,7 @@ import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 @Configuration
 public class BankClientConfig {
 
+    /*
     @Bean
     Jaxb2Marshaller jaxb2Marshaller() {
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
@@ -20,7 +21,7 @@ public class BankClientConfig {
         return jaxb2Marshaller;
     }
 
-/*
+
     @Bean
     public WebServiceTemplate transactionService() {
         WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
@@ -47,7 +48,7 @@ public class BankClientConfig {
         // pass the user name and password to be used
         return new UsernamePasswordCredentials("admin", "pwd123");
     }
-    */
+
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -80,4 +81,6 @@ public class BankClientConfig {
         HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
         return httpComponentsMessageSender;
     }
+     */
+
 }

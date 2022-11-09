@@ -21,7 +21,9 @@ import javax.xml.ws.WebServiceFeature;
 public class TransactionDataPortService
     extends Service
 {
+
 //https://trxapitest.credable.io/service/transactionWsdl.wsdl
+
     private final static URL TRANSACTIONDATAPORTSERVICE_WSDL_LOCATION;
     private final static WebServiceException TRANSACTIONDATAPORTSERVICE_EXCEPTION;
     private final static QName TRANSACTIONDATAPORTSERVICE_QNAME = new QName("http://credable.io/cbs/transaction", "TransactionDataPortService");
