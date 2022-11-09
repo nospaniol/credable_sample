@@ -26,10 +26,8 @@ public class LoanController {
     private BankClient bankClient;
     @Autowired
     private ScoringClient scoringClient;
-
     @Autowired
     private CustomerRepository customerRepository;
-
     @Autowired
     private LoanBookRepository loanBookRepository;
 

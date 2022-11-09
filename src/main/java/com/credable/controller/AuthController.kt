@@ -39,7 +39,6 @@ class AuthController(
             credable_response.title = "success"
             credable_response.message ="subscription added successfully!"
             return ResponseEntity(credable_response, HttpStatus.OK)
-
         } catch (e: Exception) {
             e.printStackTrace()
             credable_response.title = "error"

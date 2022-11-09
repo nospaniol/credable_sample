@@ -13,7 +13,6 @@ import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 @Configuration
 public class BankClientConfig {
 
-    /*
     @Bean
     Jaxb2Marshaller jaxb2Marshaller() {
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
@@ -21,35 +20,38 @@ public class BankClientConfig {
         return jaxb2Marshaller;
     }
 
-
     @Bean
-    public WebServiceTemplate transactionService() {
-        WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
-        webServiceTemplate.setMarshaller(jaxb2Marshaller());
-        webServiceTemplate.setUnmarshaller(jaxb2Marshaller());
-        webServiceTemplate.setDefaultUri("http://credable.io/");
-        // set a HttpComponentsMessageSender which provides support for basic authentication
-        webServiceTemplate.setMessageSender(httpComponentsMessageSender());
-        return webServiceTemplate;
+    public Jaxb2Marshaller unmarshaller() {
+        Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
+        unmarshaller.setPackagesToScan("io.credible.cbs");
+        return unmarshaller;
     }
-
 
     @Bean
     public HttpComponentsMessageSender httpComponentsMessageSender() {
         HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
-        // set the basic authorization credentials
         httpComponentsMessageSender.setCredentials(usernamePasswordCredentials());
-
         return httpComponentsMessageSender;
     }
 
     @Bean
     public UsernamePasswordCredentials usernamePasswordCredentials() {
-        // pass the user name and password to be used
         return new UsernamePasswordCredentials("admin", "pwd123");
     }
 
 
+
+    @Bean
+    public WebServiceTemplate transactionService() {
+        WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+        webServiceTemplate.setMarshaller(jaxb2Marshaller());
+        webServiceTemplate.setUnmarshaller(unmarshaller());
+        webServiceTemplate.setMessageSender(httpComponentsMessageSender());
+        return webServiceTemplate;
+    }
+
+
+      /*
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
@@ -62,25 +64,7 @@ public class BankClientConfig {
         return messageFactory;
     }
 
-    @Bean
-    public Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setPackagesToScan("io.credible.cbs");
-        return marshaller;
-    }
 
-    @Bean
-    public Jaxb2Marshaller unmarshaller() {
-        Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
-        unmarshaller.setPackagesToScan("io.credible.cbs");
-        return unmarshaller;
-    }
-
-    @Bean
-    public HttpComponentsMessageSender messageSender() {
-        HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
-        return httpComponentsMessageSender;
-    }
      */
 
 }
